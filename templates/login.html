@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <style>
+        /* Paleta de cores */
+        :root {
+            --red-dark: #8B0000;
+            --red-medium: #B22222;
+            --red-light: #ffe3e3;
+            --white: #fff;
+        }
+
+        /* Reset básico */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: var(--red-light);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--red-dark);
+        }
+
+        .login-container {
+            background: var(--white);
+            padding: 2.5rem 3rem;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(139, 0, 0, 0.3);
+            width: 350px;
+            text-align: center;
+        }
+
+        h2 {
+            color: var(--red-dark);
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            font-size: 2rem;
+            letter-spacing: 1px;
+        }
+
+        form label {
+            display: block;
+            text-align: left;
+            margin-bottom: 0.3rem;
+            font-weight: 600;
+        }
+
+        form input[type="text"],
+        form input[type="password"] {
+            width: 100%;
+            padding: 10px 12px;
+            margin-bottom: 1.2rem;
+            border: 2px solid var(--red-medium);
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        form input[type="text"]:focus,
+        form input[type="password"]:focus {
+            border-color: var(--red-dark);
+            outline: none;
+        }
+
+        form input[type="submit"] {
+            width: 100%;
+            background-color: var(--red-medium);
+            border: none;
+            color: var(--white);
+            font-size: 1.1rem;
+            font-weight: 700;
+            padding: 12px 0;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        form input[type="submit"]:hover {
+            background-color: var(--red-dark);
+        }
+
+        ul {
+            list-style-type: none;
+            margin-bottom: 1.5rem;
+            padding-left: 0;
+        }
+
+        ul li {
+            background-color: #ffcccc;
+            border: 1px solid var(--red-medium);
+            padding: 8px 12px;
+            margin-bottom: 0.4rem;
+            border-radius: 5px;
+            color: var(--red-dark);
+            font-weight: 600;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Login</h2>
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <ul>
+              {% for message in messages %}
+                <li>{{ message }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+        <form method="POST">
+            <label for="username">Email:</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="password">Senha:</label>
+            <input type="password" id="password" name="password" required>
+
+            <input type="submit" value="Entrar">
+        </form>
+    </div>
+</body>
+</html>

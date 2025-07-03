@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Solicitação de Refeição</title>
+    <style>
+        :root {
+            --red-dark: #8B0000;
+            --red-medium: #B22222;
+            --red-light: #ffe3e3;
+            --white: #fff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: var(--red-light);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--red-dark);
+        }
+
+        .solicitacao-container {
+            background: var(--white);
+            padding: 2rem 3rem;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(139, 0, 0, 0.3);
+            width: 420px;
+            text-align: center;
+        }
+
+        h2 {
+            color: var(--red-dark);
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .info {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        form {
+            margin-top: 1.5rem;
+        }
+
+        label {
+            font-weight: 600;
+        }
+
+        .radio-group {
+            margin: 1rem 0;
+            text-align: left;
+        }
+
+        .radio-group input {
+            margin-right: 0.4rem;
+        }
+
+        .radio-group label {
+            margin-right: 1rem;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            background-color: var(--red-medium);
+            border: none;
+            color: var(--white);
+            font-size: 1.1rem;
+            font-weight: 700;
+            padding: 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: var(--red-dark);
+        }
+
+        .mensagem {
+            margin-top: 1rem;
+            font-weight: 600;
+            color: var(--red-dark);
+        }
+
+        .logout-btn {
+            margin-top: 2rem;
+            display: inline-block;
+            background-color: var(--red-dark);
+            color: var(--white);
+            padding: 10px 18px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .logout-btn:hover {
+            background-color: #5c0000;
+        }
+    </style>
+</head>
+<body>
+    <div class="solicitacao-container">
+        <h2>Solicitação de Refeição</h2>
+        <div class="info"><strong>Data:</strong> {{ hoje }}</div>
+        <div class="info"><strong>Prato do dia:</strong> {{ prato }}</div>
+
+        <form method="POST">
+            <div class="radio-group">
+                <label><input type="radio" name="confirmacao" value="Sim" required> Sim</label>
+                <label><input type="radio" name="confirmacao" value="Não" required> Não</label>
+            </div>
+            <input type="submit" value="Confirmar">
+        </form>
+
+        {% if mensagem %}
+            <div class="mensagem">{{ mensagem }}</div>
+        {% endif %}
+
+        <a class="logout-btn" href="{{ url_for('logout') }}">Logout</a>
+    </div>
+</body>
+</html>
